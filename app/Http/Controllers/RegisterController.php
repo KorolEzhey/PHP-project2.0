@@ -21,11 +21,11 @@ class RegisterController extends Controller
         $person = Person::where('name', 'KorolEzhey')->first();
         $personName = $person->name;
 
-        auth()->login($person);
-        return redirect('/');
+        // auth()->login($person);
+        // return redirect('/');
 
         // echo $person;
 
-        // return view('register');
+        return view('register');
     }
 }
