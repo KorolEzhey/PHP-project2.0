@@ -18,3 +18,4 @@ use App\Http\Controllers\MainController;
 Route::get('/', [MainController::class, 'index'])->middleware('auth');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'enter']);
