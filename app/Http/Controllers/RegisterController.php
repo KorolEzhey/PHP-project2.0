@@ -61,7 +61,6 @@ class RegisterController extends Controller
         return response()->json(['message' => 'Успешно зарегистрирован', 'person' => $person, 'password' => $password], 201);
     }
 
-    
     public function index(Request $request) {
         // Создайте новую запись
         // $person = new Person;
@@ -85,12 +84,9 @@ class RegisterController extends Controller
     }
     public function register(Request $request)
     {
-        $user = $this->create($request->all());
-    
-        // Автоматический вход пользователя после успешной регистрации
-        Auth::login($user);
-    
-        // Перенаправление на страницу профиля
-        return redirect()->route('user.profile');
+        // Логика регистрации...
+
+        // После успешной регистрации, перенаправляем пользователя на страницу пользователя
+        return redirect('/user');
     }
 }
