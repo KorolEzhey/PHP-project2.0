@@ -1,12 +1,67 @@
 <?php
 
+
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Person;
+
+use Illuminate\Support\Str;
+// PersonController.php
+
+use Illuminate\Support\Facades\Auth;
+
+
+class LoginController extends Controller
+{
+    public function authenticate(Request $request)
+    {
+        // Валидация данных
+        $validatedData = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Попытка аутентификации пользователя
+        if (Auth::attempt($validatedData)) {
+            // Аутентификация прошла успешно
+            return redirect()->intended('/dashboard');
+        } else {
+            // Неправильные учетные данные
+            return back()->withErrors(['email' => 'Неверный email или пароль']);
+        }
+    }
+
+    // Остальной код...
+}
 
 class RegisterController extends Controller
 {
+    public function enter(Request $request)
+    {
+        // Хэширования уникального пароля с использованием bcrypt
+        $password = Hash::make(Str::random(12));
+
+        // Валидация данных
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:person',
+            'passport' => 'required|unique:person',
+        ]);
+
+        // Добавление валидированного пароля в массив
+        $validatedData['password'] = $password;
+
+        // Создание записи в модели Person
+        $person = Person::create($validatedData);
+
+        // Возвращаем ответ клиенту (например, JSON-ответ)
+        return response()->json(['message' => 'Успешно зарегистрирован', 'person' => $person, 'password' => $password], 201);
+    }
+
+    
     public function index(Request $request) {
         // Создайте новую запись
         // $person = new Person;
@@ -20,12 +75,22 @@ class RegisterController extends Controller
 
         $person = Person::where('name', 'KorolEzhey')->first();
         $personName = $person->name;
-
+        
         // auth()->login($person);
         // return redirect('/');
 
         // echo $person;
 
         return view('register');
+    }
+    public function register(Request $request)
+    {
+        $user = $this->create($request->all());
+    
+        // Автоматический вход пользователя после успешной регистрации
+        Auth::login($user);
+    
+        // Перенаправление на страницу профиля
+        return redirect()->route('user.profile');
     }
 }

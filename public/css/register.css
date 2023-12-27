@@ -38,14 +38,31 @@ h2 {
 }
 
 .button {
-    background-color: #4CAF50;
+    background-color: #46b449;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
+    font-size: 14px;
     cursor: pointer;
 }
 
 .button:hover {
     background-color: #45a049;
+}
+.generate-button {
+    background-color: #46b449; /* Зелёный цвет фона */
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.generate-button:hover {
+    background-color: #45a049; /* Изменение цвета при наведении */
+}
+.loginButton {
+    background-color:#45a049;
 }
