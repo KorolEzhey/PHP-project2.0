@@ -5,21 +5,17 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
-@endsection
-    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+
 @endsection
 
 @section('scripts')
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ asset('js/register.js') }}"></script>
-@section('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="{{ asset('js/register.js') }}"></script>
+
 @endsection
 
 
 @section('content')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container">
         <div class="registration-container">

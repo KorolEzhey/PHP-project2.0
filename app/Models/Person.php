@@ -10,6 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 class Person extends Model implements AuthenticatableContract
 {
     use Authenticatable;
-    protected $table = 'Person';
+    protected $table = 'person';
     protected $fillable = ['name', 'email', 'password', 'passport'];
 }

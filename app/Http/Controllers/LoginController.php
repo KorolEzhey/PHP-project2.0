@@ -1,8 +1,7 @@
 <?php
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -18,12 +17,13 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
+        // Попытка аутентификации
         if (Auth::attempt($credentials)) {
             // Аутентификация успешна
-            return redirect()->intended('/user.profile');
+            return redirect()->intended('/');
         } else {
             // Аутентификация не удалась
-            return redirect()->back()->withInput()->withErrors(['email' => 'Invalid credentials']);
+            return back()->withErrors(['email' => 'Неверные учетные данные']);
         }
     }
 }
