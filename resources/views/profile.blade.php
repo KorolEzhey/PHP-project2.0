@@ -1,7 +1,7 @@
 <!-- resources/views/user/profile.blade.php -->
 
 
-@extends('layouts.main')
+@extends('main')
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
@@ -10,8 +10,8 @@
 @section('content')
     <h1>User Profile</h1>
 
-    <p>Welcome, {{ $user->name }}!</p>
-    <p>Email: {{ $user->email }}</p>
+    <p>Welcome, {{Auth::user() ->name}}!</p>
+    <p>Email: {{ Auth::user()->email }}</p>
 
     <a href="{{ route('logout') }}">Logout</a>
 @endsection

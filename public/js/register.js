@@ -27,6 +27,7 @@ $(document).ready(function () {
             name: $('#username').val(),
             email: $('#email').val(),
             passport: $('#passport').val(),
+            password: $('#password').val(),
             _token: csrfToken, // Добавляем токен CSRF
         };
 
@@ -41,7 +42,7 @@ $(document).ready(function () {
                 console.log(textStatus);
                 console.log(xhr.status); // HTTP статус
                 // Добавьте здесь переход на страницу пользователя, например:
-                window.location.href = "/user-profile";
+                window.location.href = "/profile";
             },
             error: function (xhr) {
                 // Обработка ошибки

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Webleb - Вход</title>
+    <title>Вход</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/login.css">
 </head>

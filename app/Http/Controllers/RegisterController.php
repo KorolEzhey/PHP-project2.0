@@ -21,18 +21,18 @@ class RegisterController extends Controller
     }
     public function enter(Request $request)
     {
-        // Хэширование уникального пароля с использованием bcrypt
-        $password = Hash::make(Str::random(12));
+        
 
         // Валидация данных
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:people',
-            'passport' => 'required|unique:people',
+            'email' => 'required|email|unique:person',
+            'passport' => 'required|unique:person',
+            'password' => 'required',
         ]);
-
-        // Добавление валидированного пароля в массив
-        $validatedData['password'] = $password;
+        
+        $validatedData['password'] = Hash::make($request->input('password'));
+       
 
         // Создание записи в модели Person
         $person = Person::create($validatedData);
@@ -41,7 +41,7 @@ class RegisterController extends Controller
         Auth::login($person);
 
         // Перенаправление на страницу профиля пользователя
-        return redirect()->route('user.profile');
+        
     }
 
 }
