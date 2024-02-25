@@ -15,7 +15,7 @@
         <div class="login-container">
             <h2>Вход</h2>
             <form action="{{ route('login') }}" method="post">
-                @csrf <!-- Добавляем токен CSRF для безопасности -->
+                @csrf 
                 <input type="email" class="input" id="email" name="email" autocomplete="off" placeholder="Почта" required>
                 <input type="password" class="input" id="password" name="password" autocomplete="current-password" placeholder="Пароль" required>
                 <input type="submit" class="button" value="Войти">
@@ -24,6 +24,6 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <!-- Дополнительные скрипты, если необходимо -->
+    
 </body>
 </html>

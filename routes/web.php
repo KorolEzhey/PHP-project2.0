@@ -18,3 +18,8 @@ Route::get('/', [MainController::class, 'index'])->middleware('auth');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'enter']);
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
+});

@@ -1,17 +1,41 @@
-<!-- resources/views/user/profile.blade.php -->
-
-
 @extends('main')
-@section('styles')
-<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
+@section('title', 'Профиль пользователя')
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 @endsection
 
 @section('content')
-    <h1>User Profile</h1>
+    <div class="container">
+        <h1>Профиль пользователя</h1>
 
-    <p>Welcome, {{Auth::user() ->name}}!</p>
-    <p>Email: {{ Auth::user()->email }}</p>
+        @if(session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
 
-    <a href="{{ route('logout') }}">Logout</a>
+        <form method="post" action="{{ route('user.update') }}">
+            @csrf
+            @method('put')
+
+            <label for="name">Имя</label>
+            <input type="text" name="name" value="{{ $user->name }}" required>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" value="{{ $user->email }}" required>
+
+            <label for="passport">Паспорт</label>
+            <input type="text" name="passport" value="{{ $user->passport }}" required>
+
+            <button type="submit">Обновить профиль</button>
+        </form>
+
+        <form method="post" action="{{ route('logout') }}">
+            @csrf
+            <div class="logout-container">
+                <button type="submit">Выход</button>
+            </div>
+        </form>
+    </div>
 @endsection
